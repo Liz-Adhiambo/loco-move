@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_driver = models.BooleanField('driver status', default=False)
     is_mover = models.BooleanField('mover status', default=False)
+    first_login= models.BooleanField(default=True)
 
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -22,10 +23,11 @@ class Driver(models.Model):
         return self.full_name
 
 class Profile(models.Model):
-    bio = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    bio = models.TextField(blank=True, null=True)
     profile_photo = models.CharField(max_length=255,blank=True, null=True)
     status = models.CharField(max_length=50,blank=True, null=True)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,related_name='profile')
 
     def __str__(self):
-        return self.bio
+        return self.user
     

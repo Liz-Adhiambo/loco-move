@@ -122,6 +122,10 @@ REST_FRAMEWORK = {
     # 'DEFAULT_FILTER_BACKENDS': ['dj_rql.drf.RQLFilterBackend']
 
 }
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
