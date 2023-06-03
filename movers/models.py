@@ -8,7 +8,7 @@ class User(AbstractUser):
     first_login= models.BooleanField(default=True)
 
 class Driver(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,blank=True)
     middle_name = models.CharField(max_length=255,blank=True, null=True)
     dob = models.CharField(max_length=50,blank=True, null=True)
     gender = models.CharField(max_length=50,blank=True, null=True)

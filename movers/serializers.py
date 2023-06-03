@@ -21,3 +21,13 @@ class LoginSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Password Field Empty')
 
         return data
+
+class MoverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('__all__')
+
+class DriverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Driver
+        fields = ('__all__')
