@@ -63,12 +63,13 @@ def driver_signup_view(request):
             password=serializer.validated_data['password'],
             first_name=serializer.validated_data['first_name'],
             last_name=serializer.validated_data['last_name'],
+
             is_driver=True,
         )
 
         driver = serializer.save(user=user)
 
-        return Response({'Success': True, 'Code': 201, 'message': 'Driver created successfully.'}, status=HTTP_201_CREATED)
+        return Response({'Success': True, 'Code': 200, 'message': 'Driver created successfully.'}, status=HTTP_201_CREATED)
     else:
         return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
 
