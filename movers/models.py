@@ -31,3 +31,5 @@ class Profile(models.Model):
     def __str__(self):
         return self.user
     
+def request_move(request):
+    pass
