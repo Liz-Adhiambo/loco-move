@@ -32,4 +32,4 @@ class Profile(models.Model):
         return self.user
     
 def request_move(request):
-    pass
+    #serializer=moveserializer
