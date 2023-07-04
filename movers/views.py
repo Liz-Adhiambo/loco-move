@@ -53,44 +53,55 @@ def user_login_view(request):
 @permission_classes([])
 def driver_signup_view(request):
     serializer = DriverSerializer(data=request.data)
+    User = get_user_model()
 
     if serializer.is_valid():
-        User = get_user_model()
-        user = User.objects.create_user(
-            email=request.validated_data['email'],
-            password=serializer.validated_data['password'],
-            first_name=serializer.validated_data['first_name'],
-            last_name=serializer.validated_data['last_name'],
+         if serializer.is_valid():
+            email = request.data['email']
+
+            # Check if the email already exists
+            if User.objects.filter(email=email).exists():
+                return Response({'Success': False, 'Code': 400, 'message': 'Email already exists.'}, status=HTTP_400_BAD_REQUEST)
+
+            user = User.objects.create_user(
+            email=request.data['email'],
+            password=request.data.get('password'),
+            first_name=request.data.get('first_name'),
+            last_name=request.data.get('last_name'),
+            username=request.data.get('username'), 
 
             is_driver=True,
         )
 
-        driver = serializer.save(user=user)
+            driver = serializer.save(user=user)
 
-        return Response({'Success': True, 'Code': 200, 'message': 'Driver created successfully.'}, status=HTTP_201_CREATED)
+            return Response({'Success': True, 'Code': 200, 'message': 'Driver created successfully.'}, status=HTTP_201_CREATED)
     else:
         return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes([])
 def mover_signup_view(request):
-    serializer = MoverSerializer(data=request.data)
+    #serializer = MoverSerializer(data=request.data)
 
-    if serializer.is_valid():
+#
+    try:
         User = get_user_model()
         user = User.objects.create_user(
-            email=serializer.validated_data['email'],
-            password=serializer.validated_data['password'],
-            first_name=serializer.validated_data['first_name'],
-            last_name=serializer.validated_data['last_name'],
+            email=request.data.get('email'),
+            password=request.data.get('password'),
+            first_name=request.data.get('first_name'),
+            last_name=request.data.get('last_name'),
+            username=request.data.get('username'),
             is_mover=True,
         )
 
-        mover = serializer.save(user=user)
 
         return Response({'Success': True, 'Code': 201, 'message': 'Mover created successfully.'}, status=HTTP_201_CREATED)
-    else:
-        return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
+    except:
+        return Response({'Success': False, 'Code': 400, 'message': 'Invalid username or email'}, status=HTTP_400_BAD_REQUEST)
+
+
 
 
 @api_view(['GET', 'POST'])
