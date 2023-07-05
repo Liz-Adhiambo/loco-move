@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_driver = models.BooleanField('driver status', default=False)
     is_mover = models.BooleanField('mover status', default=False)
-    first_login= models.BooleanField(default=True)
 
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,blank=True)
