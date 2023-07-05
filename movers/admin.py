@@ -5,5 +5,5 @@ from .models import *
 
 
 admin.site.register(Driver)
-admin.site.register(Profile)
+# admin.site.register(Profile)
 admin.site.register(User)

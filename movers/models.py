@@ -23,10 +23,10 @@ class Driver(models.Model):
         return self.full_name
 
 class Profile(models.Model):
-    bio = models.TextField(blank=True, null=True)
+    # bio = models.TextField(blank=True, null=True)
     profile_photo = models.CharField(max_length=255,blank=True, null=True)
     status = models.CharField(max_length=50,blank=True, null=True)
-    user= models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,related_name='profile')
+    user= models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='profile')
 
     def __str__(self):
         return self.user

@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['loco-move-production.up.railway.app']
 DATABASE_URL='postgresql://postgres:xsFnH53aeFoqkh2Vi859@containers-us-west-175.railway.app:7721/railway'
 
 
