@@ -1,1 +1,1 @@
-web: gunicorn britam_backend.wsgi --log-file -
+web: gunicorn loco_move.wsgi --log-file -
