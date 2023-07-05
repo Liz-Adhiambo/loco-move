@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
-DATABASE_URL=''
+DATABASE_URL='postgresql://postgres:xsFnH53aeFoqkh2Vi859@containers-us-west-175.railway.app:7721/railway'
 
 
 
