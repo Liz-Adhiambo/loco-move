@@ -140,4 +140,4 @@ def profile_detail(request, pk):
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-#
+# request move
