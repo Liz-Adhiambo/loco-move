@@ -33,7 +33,7 @@ class Profile(models.Model):
 class Move(models.Model):
     items = models.CharField(max_length=255,blank=True, null=True)
     destination = models.CharField(max_length=275,blank=True, null=True)
-    #distance = models.CharField(max_length=255,blank=True, null=True)
+    distance = models.CharField(max_length=255,blank=True, null=True)
     status = models.CharField(max_length=50,blank=True, null=True)
     user= models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='mover')
 
