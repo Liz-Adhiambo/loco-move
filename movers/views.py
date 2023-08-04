@@ -141,3 +141,11 @@ def profile_detail(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 # request move
+@api_view(['GET', 'PUT', 'DELETE'])
+def request_move(request):
+    if request.method == 'POST':
+        serializer = RequestMoveSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'Success': True, 'Code': 200, 'message': 'Request sent successfully.'}, status=HTTP_201_CREATED)
+        return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)

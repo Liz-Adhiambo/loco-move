@@ -29,8 +29,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['loco-move-production.up.railway.app']
-DATABASE_URL='postgresql://postgres:ldiWwXBJCQMY3p1soq1e@containers-us-west-93.railway.app:6564/railway'
+# ALLOWED_HOSTS = ['loco-move-production.up.railway.app']
+ALLOWED_HOSTS = ['*']
+# DATABASE_URL='postgresql://postgres:ldiWwXBJCQMY3p1soq1e@containers-us-west-93.railway.app:6564/railway'
 
 
 
@@ -82,19 +83,13 @@ WSGI_APPLICATION = 'loco_move.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
-       'default': dj_database_url.config(
-           default=DATABASE_URL
-       )
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 
 
 # Password validation
@@ -131,7 +126,6 @@ REST_FRAMEWORK = {
         'user': '1000/min',
     }
 
-    # 'DEFAULT_FILTER_BACKENDS': ['dj_rql.drf.RQLFilterBackend']
 
 }
 #Authentication backends
@@ -182,7 +176,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://loco-move-production.up.railway.app','http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 
 
 # Default primary key field type
