@@ -1,2 +1,4 @@
 venv/
 def factorial(n):.py
+migrations/
+db.sqlite3
