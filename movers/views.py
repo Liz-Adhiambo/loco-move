@@ -123,6 +123,30 @@ def mover_signup_view(request):
         #     return Response({'Success': False, 'Code': 400, 'message': 'Invalid username or email'}, status=HTTP_400_BAD_REQUEST)
     return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+@permission_classes([])
+def user_signup_view(request):
+    serializer = UsersignupSerializer(data=request.data)
+    if serializer.is_valid():
+        email=serializer.data.get('email')
+        password=serializer.data.get('password')
+        first_name=serializer.data.get('first_name')
+        last_name=serializer.data.get('last_name')
+
+#
+        # try:
+        User = get_user_model()
+      
+        user = User.objects.create_user(email=email,
+                                        password=password,
+                                        first_name=first_name,
+                                        username=email
+        )
+
+        return Response({'Success': True, 'Code': 201, 'message': 'User created successfully.'}, status=HTTP_201_CREATED)
+        # except:
+        #     return Response({'Success': False, 'Code': 400, 'message': 'Invalid username or email'}, status=HTTP_400_BAD_REQUEST)
+    return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
 
 
 

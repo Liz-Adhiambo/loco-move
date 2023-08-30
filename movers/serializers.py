@@ -37,6 +37,10 @@ class SignupSerializer(serializers.Serializer):
     gender= serializers.CharField(max_length=255)
     dob = serializers.DateField()
 
+class UsersignupSerializer(serializers.Serializer):
+    first_name = serializers.CharField(max_length=255)
+    email = serializers.EmailField(max_length=255)
+    password = serializers.CharField(max_length=255)
 
 class DriverSerializer(serializers.ModelSerializer):
     class Meta:

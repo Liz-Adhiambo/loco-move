@@ -11,5 +11,6 @@ path('profiles/',profile_list),
 path('profiles/<int:pk>/',profile_detail),
 path('drivers/list',list_drivers),
 path('movers/list',list_movers),
+path('user/signup',user_signup_view),
 
 ]
