@@ -24,8 +24,19 @@ class LoginSerializer(serializers.ModelSerializer):
 
 class MoverSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Mover
         fields = ('__all__')
+
+class SignupSerializer(serializers.Serializer):
+    first_name = serializers.CharField(max_length=255)
+    last_name = serializers.CharField(max_length=255)
+    middle_name = serializers.CharField(max_length=255)
+    email = serializers.EmailField(max_length=255)
+    password = serializers.CharField(max_length=255)
+    username = serializers.CharField(max_length=255)
+    gender= serializers.CharField(max_length=255)
+    dob = serializers.DateField()
+
 
 class DriverSerializer(serializers.ModelSerializer):
     class Meta:

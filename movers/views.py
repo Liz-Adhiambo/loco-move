@@ -82,24 +82,39 @@ def driver_signup_view(request):
 @api_view(['POST'])
 @permission_classes([])
 def mover_signup_view(request):
-    #serializer = MoverSerializer(data=request.data)
+    serializer = SignupSerializer(data=request.data)
+    if serializer.is_valid():
+        email=serializer.data.get('email')
+        password=serializer.data.get('password')
+        first_name=serializer.data.get('first_name')
+        last_name=serializer.data.get('last_name')
+        username=serializer.data.get('username')
+        gender=serializer.data.get('gender')
+        dob=serializer.data.get('dob')
+        middle_name=serializer.data.get('middle_name')
+        is_mover=True
 
 #
-    try:
+        # try:
         User = get_user_model()
-        user = User.objects.create_user(
-            email=request.data.get('email'),
-            password=request.data.get('password'),
-            first_name=request.data.get('first_name'),
-            last_name=request.data.get('last_name'),
-            username=request.data.get('username'),
-            is_mover=True,
+      
+        user = User.objects.create_user(email=email,
+                                        password=password,
+                                        first_name=first_name,
+                                        last_name=last_name,
+                                        username=email,is_mover=True,
         )
+        mover= Mover.objects.create(user=user,
+                                    middle_name= middle_name,
+                                    dob= dob,gender=gender
+            
+                                    )
 
 
         return Response({'Success': True, 'Code': 201, 'message': 'Mover created successfully.'}, status=HTTP_201_CREATED)
-    except:
-        return Response({'Success': False, 'Code': 400, 'message': 'Invalid username or email'}, status=HTTP_400_BAD_REQUEST)
+        # except:
+        #     return Response({'Success': False, 'Code': 400, 'message': 'Invalid username or email'}, status=HTTP_400_BAD_REQUEST)
+    return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
 
 
 
