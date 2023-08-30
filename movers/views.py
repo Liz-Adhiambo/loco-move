@@ -161,6 +161,18 @@ def profile_detail(request, pk):
     elif request.method == 'DELETE':
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['GET'])
+def list_drivers(request):
+    drivers = Driver.objects.all()
+    serializer = DriverSerializer(drivers, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def list_movers(request):
+    drivers = Mover.objects.all()
+    serializer = MoverSerializer(drivers, many=True)
+    return Response(serializer.data)
 
 # request move
 @api_view(['GET', 'PUT', 'DELETE'])

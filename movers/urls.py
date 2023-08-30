@@ -9,5 +9,7 @@ path('driver/signup', driver_signup_view, name='driver_signup_view'),
 path('mover/signup', mover_signup_view, name='mover_signup_view'),
 path('profiles/',profile_list),
 path('profiles/<int:pk>/',profile_detail),
+path('drivers/list',list_drivers),
+path('movers/list',list_movers),
 
 ]
