@@ -199,7 +199,7 @@ def list_movers(request):
     return Response(serializer.data)
 
 # request move
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['POST'])
 def request_move(request):
     if request.method == 'POST':
         serializer = RequestMoveSerializer(data=request.data)

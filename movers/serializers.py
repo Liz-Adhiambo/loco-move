@@ -54,7 +54,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class RequestMoveSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Profile
+        model = MoveRequest
         fields = ('__all__')
 
 class VehicleSerializer(serializers.ModelSerializer):
