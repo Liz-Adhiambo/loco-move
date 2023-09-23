@@ -208,6 +208,16 @@ def request_move(request):
             return Response({'Success': True, 'Code': 200, 'message': 'Request sent successfully.'}, status=HTTP_201_CREATED)
         return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
     
+# schedule move
+@api_view(['POST'])
+def schedule_move(request):
+    if request.method == 'POST':
+        serializer = ScheduleMoveSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'Success': True, 'Code': 200, 'message': 'Move scheduled successfully.'}, status=HTTP_201_CREATED)
+        return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
+    
 ###vehiclesss
 @api_view(['POST'])
 def add_vehicle(request):

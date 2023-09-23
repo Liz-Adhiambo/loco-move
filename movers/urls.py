@@ -14,5 +14,6 @@ path('movers/list',list_movers),
 path('user/signup',user_signup_view),
 path('vehicle/add',add_vehicle),
 path('request/move',request_move)
+path('schedule/move',schedule_move)
 
 ]
