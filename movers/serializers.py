@@ -57,6 +57,12 @@ class RequestMoveSerializer(serializers.ModelSerializer):
         model = MoveRequest
         fields = ('__all__')
 
+
+class ScheduleMoveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Schedule
+        fields = ('__all__')
+
 class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle

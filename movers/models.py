@@ -65,3 +65,17 @@ class MoveRequest(models.Model):
 
     def __str__(self):
         return str(self.items)
+
+
+class Schedule(models.Model):
+    items = models.CharField(max_length=255, blank=True, null=True)
+    destination = models.CharField(max_length=275, blank=True, null=True)
+    from_location = models.CharField(max_length=255, blank=True, null=True)
+    distance = models.CharField(max_length=255, blank=True, null=True)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True)
+    status = models.CharField(max_length=50, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='moverequest')
+
+    def __str__(self):
+        return str(self.items)
