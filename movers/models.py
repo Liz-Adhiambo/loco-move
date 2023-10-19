@@ -61,7 +61,7 @@ class MoveRequest(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='moverequest')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='move_requests')
 
     def __str__(self):
         return str(self.items)
