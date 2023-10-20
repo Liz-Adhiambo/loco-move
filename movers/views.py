@@ -226,3 +226,12 @@ def add_vehicle(request):
         serializer.save()
         return Response({'Success': True, 'Code': 200, 'message': 'Vehicle added successfully.'}, status=HTTP_201_CREATED)
     return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
+
+# #request move
+# @api_view(['POST'])
+# def request_move(request, user_id):
+#     serializer = VehicleSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response({'Success': True, 'Code': 200, 'message': 'Vehicle added successfully.'}, status=HTTP_201_CREATED)
+#     return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)

@@ -58,8 +58,8 @@ class MoveRequest(models.Model):
     destination = models.CharField(max_length=275, blank=True, null=True)
     from_location = models.CharField(max_length=255, blank=True, null=True)
     distance = models.CharField(max_length=255, blank=True, null=True)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True)
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True,blank=True,)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True, blank=True)
     status = models.CharField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='move_requests')
 
