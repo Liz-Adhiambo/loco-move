@@ -62,6 +62,7 @@ class MoveRequest(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True, blank=True)
     status = models.CharField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='move_requests')
+    
 
     def __str__(self):
         return str(self.items)
@@ -79,3 +80,8 @@ class Schedule(models.Model):
 
     def __str__(self):
         return str(self.items)
+    
+class Bid(models.Model):
+    ride_request = models.ForeignKey(MoveRequest, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)

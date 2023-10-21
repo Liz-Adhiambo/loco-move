@@ -227,11 +227,32 @@ def add_vehicle(request):
         return Response({'Success': True, 'Code': 200, 'message': 'Vehicle added successfully.'}, status=HTTP_201_CREATED)
     return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
 
-# #request move
-# @api_view(['POST'])
-# def request_move(request, user_id):
-#     serializer = VehicleSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response({'Success': True, 'Code': 200, 'message': 'Vehicle added successfully.'}, status=HTTP_201_CREATED)
-#     return Response({'Success': False, 'Code': 400, 'message': serializer.errors}, status=HTTP_400_BAD_REQUEST)
+@api_view(['GET', 'PUT'])
+def select_bid(request, ride_request_id):
+    try:
+        ride_request = MoveRequest.objects.get(pk=ride_request_id)
+    except MoveRequest.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        bids = Bid.objects.filter(ride_request=ride_request)
+        serializer = BidSerializer(bids, many=True)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        # Here, you would typically send the ID of the bid to be accepted
+        bid_id = request.data.get('bid_id')
+        bid = Bid.objects.get(pk=bid_id)
+        ride_request.driver = bid.driver
+        ride_request.status = "ride accepted"
+        ride_request.save()
+        return Response(status=status.HTTP_200_OK)
+    
+
+@api_view(['POST'])
+def create_bid(request):
+    if request.method == 'POST':
+        serializer = BidSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
