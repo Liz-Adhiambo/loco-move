@@ -14,6 +14,8 @@ path('movers/list',list_movers),
 path('user/signup',user_signup_view),
 path('vehicle/add',add_vehicle),
 path('request/move',request_move),
-path('schedule/move',schedule_move)
+path('schedule/move',schedule_move),
+path('bid/', create_bid),
+path('select-bid/<int:ride_request_id>/', select_bid),
 
 ]
