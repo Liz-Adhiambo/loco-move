@@ -85,3 +85,9 @@ class Bid(models.Model):
     ride_request = models.ForeignKey(MoveRequest, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class ClothingLink(models.Model):
+    url = models.URLField(max_length=200)
+    clothing_name = models.CharField(max_length=255, blank=True, null=True)
+    seller_number = models.CharField(max_length=255, blank=True, null=True)
