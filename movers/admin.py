@@ -10,4 +10,5 @@ admin.site.register(User)
 admin.site.register(MoveRequest)
 admin.site.register(Vehicle)
 admin.site.register(Mover)
+admin.site.register(ClothingLink)
 
