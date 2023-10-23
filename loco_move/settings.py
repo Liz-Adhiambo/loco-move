@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'movers',
     'rest_framework',
     'rest_framework_simplejwt',
+    'import_export',
 ]
 
 MIDDLEWARE = [
