@@ -33,6 +33,7 @@ def user_login_view(request):
             'Success': True,
             'Code': 200,
             'Details': {
+                "user_id":users.id,
                 'email': users.email,
                 'first_name': users.first_name,
                 'last_name': users.last_name,
@@ -257,62 +258,3 @@ def create_bid(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import time
-from selenium.webdriver.common.by import By
-from movers.models import ClothingLink
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-
-# Set the path to your web driver executable
-from selenium import webdriver
-@api_view(['GET'])
-@permission_classes([])
-def scrapper(request):
-    print('yays')
-
-    driver = webdriver.Chrome()
-    # driver.get("https://www.google.com/")
-    # driver_path = '/home/liz-emmerce/Downloads/chrome-linux64/chrome'
-
-    # # Create a new instance of the web driver (e.g., for Chrome)
-    # driver = webdriver.Chrome(driver_path)
-    try:
-        # Navigate to the website
-        driver.get('https://jiji.ng/clothing')
-
-        # Perform actions like clicking buttons, scrolling, or navigating to pages
-        # For example, clicking a "Load More" button repeatedly:
-        # Set the number of scrolls to perform
-        num_scrolls = 5  # Adjust as needed
-
-        for _ in range(num_scrolls):
-            print('uiop')
-            # Scroll down to trigger loading more items
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            
-            # Wait for some time to allow the content to load
-            time.sleep(10)  # Adjust the sleep duration as needed
-
-            wait = WebDriverWait(driver, 20)  # Adjust the timeout as needed
-            clothing_links = driver.find_elements(By.CSS_SELECTOR, 'div.b-list-advert__gallery__item a')
-            print(clothing_links)
-
-        # Extract and print the href attribute of each anchor tag
-        for link in clothing_links:
-            href = link.get_attribute('href')
-            print(href)
-            print('---')
-
-            #Create and save a new ClothingLink instance
-            clothing_link = ClothingLink(url=href)
-            clothing_link.save()
-
-        return Response({'Success': True, 'Code': 200, 'message': 'Scrapped successfully.'}, status=HTTP_201_CREATED)
-    finally:
-        # Close the browser when done (whether an exception occurred or not)
-        driver.quit()
-

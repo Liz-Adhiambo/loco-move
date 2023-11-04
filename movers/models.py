@@ -91,3 +91,5 @@ class ClothingLink(models.Model):
     url = models.URLField(max_length=200)
     clothing_name = models.CharField(max_length=255, blank=True, null=True)
     seller_number = models.CharField(max_length=255, blank=True, null=True)
+    price=models.CharField(max_length=255, blank=True, null=True)
+    image_link = models.TextField( blank=True, null=True)
