@@ -17,6 +17,8 @@ path('request/move',request_move),
 path('schedule/move',schedule_move),
 path('bid/', create_bid),
 path('select-bid/<int:ride_request_id>/', select_bid),
+path('bid/cancel/<int:ride_request_id>/', cancel_bid),
+
 
 
 ]
