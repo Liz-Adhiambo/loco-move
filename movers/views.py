@@ -17,7 +17,7 @@ from .models import *
 def user_login_view(request):
     username = request.data.get('username')
     password = request.data.get('password')
-    print("one")
+
 
     user = authenticate(request, username=username, password=password)
     print("weny")
