@@ -267,4 +267,4 @@ def cancel_bid(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-#commit test
+# client register_driver
