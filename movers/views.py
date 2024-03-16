@@ -271,3 +271,4 @@ def cancel_bid(request):
 
 
 ###vehiclesss
+
